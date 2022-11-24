@@ -1,0 +1,39 @@
+<div class="card p-3 m-3 text-secondary bg-light">                      
+    <h3>Patient data</h3> 
+    <div class="row">
+        <input class="form-control mt-4 ml-3 col-9" type="text" [(ngModel)]="search" placeholder="Search by name">
+        <a class="col-2 mt-4" (click)="getPatients()">
+            <button class="btn btn-success">Search</button>
+        </a>
+    </div>
+    <table class="table table-striped mt-4">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Telephone</th>
+                <th>Address</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="">
+            <tr *ngFor="let patient of patients">
+                <td>{{patient.name}}</td>
+                <td>{{patient.age}}</td>
+                <td>{{patient.telephone}}</td>
+                <td>{{patient.address}}</td>
+                <td> 
+                    <a [routerLink]="['/edit-patient', patient.id, patient.name, patient.age, patient.telephone, patient.address]">
+                        <button class="btn btn-warning">Edit</button>
+                    </a>
+                </td>
+                <td> 
+                    <a (click)="deletePatient(patient.id)">
+                        <button class="btn btn-danger">Delete</button>
+                    </a>
+                </td>
+            </tr>                                        
+        </tbody>
+    </table> 
+</div>    

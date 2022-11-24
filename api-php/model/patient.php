@@ -1,6 +1,4 @@
 <?php
-include 'connection\connect.php';
-
 class Patient{
     private $connection;
 
@@ -18,7 +16,7 @@ class Patient{
 
     //Method that print the error in error-log.log
     public function errorLog($error):void{
-        error_log(' //// '.date("Y-m-d h:i:sa").' '.$error.' ', 3, 'error-log/error-log.log');
+        error_log(' //// '.date("Y-m-d h:i:sa").' '.$error.' ', 3, 'error-log/error-log-patient.log');
     }
 
     //Method create patient -----------------------------------------------------------------
@@ -41,7 +39,7 @@ class Patient{
                 $data = [
                     'code' => 200,
                     'status' => 'success',
-                    'patient' => $params->name.' registered correctly'
+                    'message' => $params->name.' registered correctly'
                 ];
             }catch(PDOException $e){
                 $this->errorLog($e->getMessage());
@@ -56,8 +54,15 @@ class Patient{
     }
 
     //Method get all patients -----------------------------------------------------------------
-    public function getPatients():array{
-        $sql = "SELECT * FROM tblpatient ORDER BY id DESC";
+    public function getPatients($search = ''):array{
+
+        //
+        if(!empty($search)){
+            $sql = "SELECT * FROM tblpatient WHERE name LIKE '%".$search."%' ORDER BY id DESC";
+        }else{
+            $sql = "SELECT * FROM tblpatient ORDER BY id DESC";
+        }
+        
         
         //If the connection to the database failed, return code 500.
         if(!is_object($this->connection) && $this->connection == 'error-connection-exception'){

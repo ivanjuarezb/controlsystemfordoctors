@@ -1,28 +1,33 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './modules/header/header.component';
-import { CrearPacienteComponent } from './modules/crear-paciente/crear-paciente.component';
-import { DatosPacienteComponent } from './modules/datos-paciente/datos-paciente.component';
-import { NuevoHistorialComponent } from './modules/nuevo-historial/nuevo-historial.component';
-import { HistorialPacienteComponent } from './modules/historial-paciente/historial-paciente.component';
-import { ExpedienteComponent } from './modules/expediente/expediente.component';
+import { CreatePatientComponent } from './components/create-patient/create-patient.component';
+import { NewHistoryComponent } from './components/new-history/new-history.component';
+import { PatientHistoryComponent } from './components/patient-history/patient-history.component';
+import { ExpedienteComponent } from './components/expediente/expediente.component';
+import { EditPatientComponent } from './components/edit-patient/edit-patient.component';
+import { PatientDataComponent } from './components/patient-data/patient-data.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    CrearPacienteComponent,
-    DatosPacienteComponent,
-    NuevoHistorialComponent,
-    HistorialPacienteComponent,
-    ExpedienteComponent
+    CreatePatientComponent,
+    EditPatientComponent,
+    PatientDataComponent,
+    NewHistoryComponent,
+    ExpedienteComponent,
+    PatientHistoryComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
