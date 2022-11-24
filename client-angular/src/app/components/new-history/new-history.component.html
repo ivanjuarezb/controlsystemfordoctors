@@ -1,0 +1,90 @@
+<div *ngIf="flag == false" class="card p-3 m-3 text-secondary bg-light">                      
+    <h3>Patient data</h3> 
+    <div class="row">
+        <input class="form-control mt-4 ml-3 col-9" type="text" [(ngModel)]="search" placeholder="Search by name">
+        <a class="col-2 mt-4" (click)="getPatients()">
+            <button class="btn btn-success">Search</button>
+        </a>
+    </div>
+    <table *ngIf="this.patients != null" class="table table-striped mt-4">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody class="">
+            <tr *ngFor="let patient of patients">
+                <td>{{patient.name}}</td>
+                <td>
+                    <a [routerLink]="['/new-history', patient.id, patient.name]">
+                        <button class="btn btn-primary">New history</button>
+                    </a>
+                </td>
+            </tr>                                        
+        </tbody>
+    </table> 
+</div>    
+
+<div *ngIf="flag == true" class="card p-3 m-3 text-secondary bg-light">
+    <div class="row">
+        <div class="col-5">
+            <h3>New history</h3>
+        </div>  
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="mb-5 mt-3 row">
+                <div class="col-3 m-auto border rounded">Name: {{namePatient}}</div>                
+                <div class="col-3 m-auto border rounded">Patient ID: {{idPatient}}</div> 
+                <div class="col-3 m-auto border rounded">Date: {{date}}</div> 
+            </div>
+            <div class="row mb-2">
+                <label class="col-2 col-form-label">Job</label>
+                <div class="col-10">
+                    <input class="form-control" type="text">
+                </div>
+            </div>
+            <div class="row mb-2">
+                <label class="col-2 col-form-label">Allergy</label>
+                <div class="col-10">
+                    <input class="form-control" type="text"  >
+                </div>
+            </div>
+            <div class="row mb-4">
+                <label class="col-2 col-form-label">Weight</label>
+                <div class="col-4">
+                    <input class="form-control" type="number" value="0.0">
+                </div>
+                <label class="col-2 col-form-label">Temperature</label>
+                <div class="col-4">
+                    <input class="form-control" type="number" value="0.0">
+                </div>
+            </div>
+            <div class="row mb-2">
+                <label>Medical history</label>
+                <div class="col-12">
+                    <textarea class="form-control" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <label>Medical diagnosis</label>
+                <div class="col-12">
+                    <textarea class="form-control" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label>Treatment</label>
+                <div class="col-12">
+                    <textarea class="form-control" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="row col-2 m-auto form-actions">
+                <button class="btn btn-success">Save History</button>
+            </div>
+        </div>
+    </div>  
+</div>
+
+
+

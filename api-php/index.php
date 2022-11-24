@@ -1,4 +1,7 @@
 <?php
+include 'connection\connect.php';
+include 'model\patient.php';
+include 'model\history.php';
 include 'controller\controller.php';
 
 //Allow headers
@@ -14,6 +17,8 @@ if(isset($_POST['json']) && !empty($_POST['json'])){
     $method = $_GET['method'];
     if(isset($_GET['id']) && !empty($_GET['id'])){
         $params = $_GET['id'];
+    }elseif(isset($_GET['search']) && !empty($_GET['search'])){
+        $params = $_GET['search'];
     }
 }
 
@@ -23,15 +28,17 @@ if(isset($method) && $method == "createPatient"){
     $response = $controller->createPatient($params);
 }elseif(isset($method) && $method == "updatePatient"){
     $response = $controller->updatePatient($params);
-}elseif(isset($method) && $method == "getPatients"){
+}elseif(isset($method) && $method == "getPatients" && !isset($params)){
    $response = $controller->getPatients();
 }elseif(isset($method) && $method == "deletePatient" && isset($params) ){
     $response = $controller->deletePatient($params);
+}elseif(isset($method) && $method == "getPatients" && isset($params) ){
+    $response = $controller->getPatients($params);
 }else{
     $response = [
         'code' => 400,
         'status' => 'error',
-        'messagge' => 'Bad request.'
+        'message' => 'Bad request'
     ];
 }
 

@@ -22,6 +22,7 @@ CREATE TABLE tblhistory (
     pathological_personal_history TEXT,
     non_pathological_personal_history TEXT,
     allergies TEXT,
+    date TEXT,
     next_appointment TEXT,
     treatment TEXT,
     
